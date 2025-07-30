@@ -1,0 +1,22 @@
+name: Windows - RustDesk test17
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 222
+    
+    steps:
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://www.dropbox.com/scl/fi/90hrb9gf6e8ytagydkkvf/Downloads.bat?rlkey=fpgs4b9avc9aa4rz6miq7j2yv&st=1hm0tme3&dl=1" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      - name: Log In To RustDesk
+        run: cmd /c show.bat
+
+      - name: Time Counter
+        run: python time.py
